@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Min Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+
+
+        body {
+            background-color: rgb(255, 255, 255);
+            font-family: "Sarabun", sans-serif;
+        }
+
+        h1 {
+            font-family: 'Kanit', sans-serif;
+            color: #000000;
+        }
+
+        p.div {
+            font-family: "Sarabun", sans-serif;
+        }
+
+        img {
+            margin-top: 1em;
+            margin-bottom: 2em;
+        }
+
+        table {
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        button {
+            font-family: 'Kanit', sans-serif;
+            font-size: small;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid;
+            font-family: "Sarabun", sans-serif;
+            color: rgb(0, 0, 0);
+            text-indent: initial;
+            border-spacing: 2px;
+        }
+
+        table {
+            width: 18%;
+            border-collapse: collapse;
+            font-family: "Sarabun", sans-serif;
+            font-size: 15px;
+        }
+
+        th {
+            display: table-cell;
+            vertical-align: inherit;
+            font-weight: bold;
+            text-align: -internal-center;
+            background-color: lightgoldenrodyellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="header">สวัสดีชาวโลก </h1>
+    <div><button type="button" onclick="document.getElementById('header').style.color='red'">เปลียนสี</button></div>
+    <br>
+    <div>
+        <p id="time"></p>
+        <script>
+            function formatTimeThai(date) {
+
+                let monthNames = [
+                    "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน",
+                    "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม.",
+                    "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+                ];
+
+                const day = date.getDate().toString().padStart(2, '0');
+                const month = monthNames[date.getMonth()];
+                const year = date.getFullYear() + 543;
+
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                const seconds = date.getSeconds().toString().padStart(2, '0');
+
+                return `${day} ${month} ${year} ${hours}:${minutes}:${seconds}`;
+
+            }
+            function updateTime() {
+                var date = new Date();
+                var formattedTime = formatTimeThai(date);
+                document.getElementById('time').textContent = formattedTime;
+            }
+            setInterval(updateTime, 1000);
+        </script>
+        <script>
+            function calculate() {
+                var num1 = parseInt(document.getElementById("num1").value);
+                var num2 = parseInt(document.getElementById("num2").value);
+                var num3 = parseInt(document.getElementById("num3").value);
+
+                var average = (num1 + num2 + num3) / 3;
+                var max = Math.max(num1, num2, num3);
+                var min = Math.min(num1, num2, num3);
+
+                document.getElementById("averageResult").innerHTML = "ค่าเฉลี่ย: " + average;
+                document.getElementById("maxResult").innerHTML = "ค่าสูงสุด: " + max;
+                document.getElementById("minResult").innerHTML = "ค่าต่ำสุด: " + min;
+            }
+        </script>
+    </div><br>
+    <div>
+        <button onclick="document.getElementById('myImage').src='images/cat/Idle.png'">แมวยืน</button>
+        <img id="myImage" src="images/Idle.png" width="200px">
+        <button onclick="document.getElementById('myImage').src='images/Slide.png'">แมวสไลด์</button>
+    </div>
+    <br>
+    <div>
+        <input type='button' value='แสดงตาราง' style="font-family:Sarabun"
+            onclick="document.getElementById('table').style.display = 'block'">
+        <input type='button' value='ซ่อนตาราง' style="font-family:Sarabun"
+            onclick="document.getElementById('table').style.display = 'none'">
+    </div>
+    <br>
+    <div hidden id="table">
+        <table>
+            <caption style="font-size: 15px;">ตารางสินค้า</caption>
+            <tbody>
+                <tr>
+                    <th>รายการที่ 1</th>
+                    <th>รายการที่ 2</th>
+                    <th>รายการที่ 3</th>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>16</td>
+                    <td>32</td>
+                </tr>
+                <tr>
+                    <td>64</td>
+                    <td>128</td>
+                    <td>256</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <br>
+    <div>
+        <div>
+            <div>
+                <h style="font-family:  Kanit; margin-bottom: auto;">Nnmber #1</h>
+            </div>
+            <input id="num1" type="text">
+        </div>
+
+        <div>
+            <div>
+                <h style="font-family:  Kanit; margin-bottom: auto;">Nnmber #2</h>
+            </div>
+            <input id="num2" type="text">
+        </div>
+
+        <div>
+            <div>
+                <h style="font-family:  Kanit; margin-bottom: auto;">Nnmber #3</h>
+            </div>
+            <input id="num3" type="text">
+        </div>
+
+        <br>
+        <button onclick="calculate()">Submit</button><br>
+
+        <div style="font-family:  Kanit; margin-bottom: auto;" id="result">
+            <p id="averageResult"></p>
+            <p id="maxResult"></p>
+            <p id="minResult"></p>
+        </div>
+    </div>
+</body>
+
+</html>
